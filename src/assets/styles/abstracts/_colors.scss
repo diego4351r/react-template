@@ -1,0 +1,72 @@
+$neutral: (
+	100: 0 0% 100%,
+	200: 0 0% 90%,
+	300: 0 0% 70%,
+	400: 0 0% 60%,
+	500: 0 0% 50%,
+	600: 0 0% 40%,
+	700: 0 0% 30%,
+	800: 0 0% 10%,
+	900: 0 0% 0%
+);
+
+$palettes: (
+	primary: (
+		// grey
+		darker: 91 10% 48%,
+		dark: 91 10% 55%,
+		base: 91 10% 62%,
+		light: 90 10% 76%,
+		lighter: 90 10% 92%
+	),
+	secondary: (
+		// green
+		darker: 109 35% 41%,
+		dark: 109 34% 48%,
+		base: 106 35% 55%,
+		light: 108 35% 69%,
+		lighter: 109 35% 78%
+	),
+	accent: (
+		// red
+		darker: 352 65% 41%,
+		dark: 352 64% 44%,
+		base: 352 64% 48%,
+		light: 352 64% 62%,
+		lighter: 352 64% 76%
+	),
+	blue: (
+		// blue
+		darker: 211 66% 34%,
+		dark: 211 66% 45%,
+		base: 211 65% 55%,
+		light: 211 66% 69%,
+		lighter: 211 66% 76%
+	),
+	gold: (
+		// gold
+		darker: 44 89% 41%,
+		dark: 44 89% 48%,
+		base: 44 88% 55%,
+		light: 45 88% 76%,
+		lighter: 45 88% 89%
+	)
+);
+
+@function color($color, $tone) {
+
+	@if map-has-key($palettes, $color) {
+		$color: map-get($palettes, $color);
+
+		@if map-has-key($color, $tone) {
+			$tone: map-get($color, $tone);
+			@return hsl($tone);
+		}
+
+		@warn "unknown tone `#{$tone}` in color";
+		@return null;
+	}
+
+	@warn "unknown color `#{$color}` in palette";
+	@return null;
+}
