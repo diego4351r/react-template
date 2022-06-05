@@ -1,7 +1,7 @@
 /* eslint-disable import/export */
 import { render } from '@testing-library/react'
-
-const customRender = (ui: React.ReactElement, options = {}) =>
+import { ReactElement } from 'react';
+const customRender = (ui: ReactElement, options = {}) =>
   render(ui, {
     // wrap provider(s) here if needed
     wrapper: ({ children }) => children,
